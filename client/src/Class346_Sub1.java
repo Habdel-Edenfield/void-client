@@ -64,9 +64,35 @@ final class Class346_Sub1 extends Class346 implements KeyListener, FocusListener
         method2701(keyevent, 0, 0);
     }
 
+    private static final int[] CAMERA_LETTERS = {KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D};
+    private static final int[] CAMERA_ARROWS = {KeyEvent.VK_UP, KeyEvent.VK_LEFT, KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT};
+    private final boolean[] heldCameraLetters = new boolean[CAMERA_LETTERS.length];
+
+    /**
+     * Ctrl + WASD moves the camera like the arrow keys. A letter pressed with ctrl stays an arrow
+     * until it's released, even if ctrl is let go first, so the camera never keeps turning.
+     */
+    private int cameraKey(KeyEvent keyevent, boolean released) {
+        int code = keyevent.getKeyCode();
+        for (int index = 0; index < CAMERA_LETTERS.length; index++) {
+            if (code != CAMERA_LETTERS[index]) {
+                continue;
+            }
+            if (!released && keyevent.isControlDown()) {
+                heldCameraLetters[index] = true;
+                return CAMERA_ARROWS[index];
+            }
+            if (released && heldCameraLetters[index]) {
+                heldCameraLetters[index] = false;
+                return CAMERA_ARROWS[index];
+            }
+        }
+        return code;
+    }
+
     private final void method2701(KeyEvent keyevent, int i, int i_2_) {
         anInt6538++;
-        int i_3_ = keyevent.getKeyCode();
+        int i_3_ = cameraKey(keyevent, i_2_ == 1);
         if (i_3_ != 0) {
             if (i_3_ >= 0 && Class285_Sub2.anIntArray8507.length > i_3_) {
                 i_3_ = Class285_Sub2.anIntArray8507[i_3_];
@@ -105,6 +131,11 @@ final class Class346_Sub1 extends Class346 implements KeyListener, FocusListener
     public final synchronized void keyTyped(KeyEvent keyevent) {
         anInt6527++;
         char c = keyevent.getKeyChar();
+        // Ctrl + WASD is the camera, so its control characters (^W ^A ^S ^D) aren't typed into the chat
+        if (keyevent.isControlDown() && (c == 0x17 || c == 0x01 || c == 0x13 || c == 0x04)) {
+            keyevent.consume();
+            return;
+        }
         if (c != 0 && Class122.method1089(-125, c)) {
             method2702(-1, 128, c, 3);
             keyevent.consume();
