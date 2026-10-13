@@ -98,7 +98,10 @@ final class Class239_Sub17 extends Class239 {
             }
         }
         anInt6022++;
+        boolean bankable = isInventoryItem(class46);
         for (int i_13_ = 9; i_13_ >= 5; i_13_--) {
+            if (bankable && i_13_ == 7) addBankOptions(class46);
+            if (bankable && isBankOption(i_13_)) continue;
             String string = Class368.method3561(i_13_, class46, true);
             if (string != null) {
                 Class50_Sub3.method466(false, class46.aString752 + Loader.getDebug(class46.anInt830 >> 16, class46.anInt830 & 0xffff), class46.anInt830, (byte) -122, false, class46.anInt704, class46.anInt812, true, 1011, (class46.anInt704 << 0) | class46.anInt830, string, 1 + i_13_, Class100.method888((byte) 57, i_13_, class46));
@@ -112,6 +115,7 @@ final class Class239_Sub17 extends Class239 {
         }
         if (i_12_ >= -55) method1793(null, -19, 70, -103);
         for (int i_14_ = 4; i_14_ >= 0; i_14_--) {
+            if (bankable && isBankOption(i_14_)) continue;
             String string_15_ = Class368.method3561(i_14_, class46, true);
             if (string_15_ != null) {
                 Class50_Sub3.method466(false, class46.aString752, class46.anInt830, (byte) -67, false, class46.anInt704, class46.anInt812, true, 18, (class46.anInt704 << 0) | class46.anInt830, string_15_, 1 + i_14_, Class100.method888((byte) 57, i_14_, class46));
@@ -122,6 +126,28 @@ final class Class239_Sub17 extends Class239 {
             if (class46.aString816 != null) Class50_Sub3.method466(false, "", class46.anInt830, (byte) -118, false, class46.anInt704, class46.anInt812, true, 16, (class46.anInt704 << 0) | class46.anInt830, class46.aString816, 0L, -1);
             else Class50_Sub3.method466(false, "", class46.anInt830, (byte) -79, false, class46.anInt704, class46.anInt812, true, 16, class46.anInt704 << 0 | class46.anInt830, Class274.aClass274_3492.method2063(Class348_Sub33.anInt6967, 544), 0L, -1);
             Class348_Sub42_Sub15.anInt9655++;
+        }
+    }
+
+    // Inventory options 3-5 are Bank-1, Bank-5 and Bank-All; no item uses them and the server only enables them outside the Wilderness
+    private static final String[] BANK_OPTIONS = {"Bank-1", "Bank-5", "Bank-All"};
+    private static final int FIRST_BANK_OPTION = 3;
+
+    private static boolean isInventoryItem(Class46 class46) {
+        return class46.anInt830 == 149 << 16 && class46.anInt812 != -1;
+    }
+
+    private static boolean isBankOption(int option) {
+        return option >= FIRST_BANK_OPTION && option < FIRST_BANK_OPTION + BANK_OPTIONS.length;
+    }
+
+    // Added bottom up so they read Bank-1, Bank-5, Bank-All between Drop and Examine
+    private static void addBankOptions(Class46 class46) {
+        for (int index = BANK_OPTIONS.length - 1; index >= 0; index--) {
+            int option = FIRST_BANK_OPTION + index;
+            if (!client.method105(class46).method3301(option, false)) continue;
+            Class50_Sub3.method466(false, class46.aString752 + Loader.getDebug(class46.anInt830 >> 16, class46.anInt830 & 0xffff), class46.anInt830, (byte) -122, false, class46.anInt704, class46.anInt812, true, 1011, (class46.anInt704 << 0) | class46.anInt830, BANK_OPTIONS[index], 1 + option, Class100.method888((byte) 57, option, class46));
+            Class335.anInt4169++;
         }
     }
 
