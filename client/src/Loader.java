@@ -118,6 +118,9 @@ public class Loader extends Applet {
         aJPanel3.setPreferredSize(new Dimension(765, 503));
         aJFrame2.getContentPane().add(aJPanel3, "Center");
         aJFrame2.pack();
+        // Centred when restored, and maximised from the start
+        aJFrame2.setLocationRelativeTo(null);
+        aJFrame2.setExtendedState(JFrame.MAXIMIZED_BOTH);
         aJFrame2.setVisible(true);
         aJFrame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ArrayList<Image> icons = new ArrayList<>();
