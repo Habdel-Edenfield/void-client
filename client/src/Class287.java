@@ -72,7 +72,9 @@ final class Class287 {
             if (l >= (long) i_18_) {
                 if (i_13_ > -49) method2178(null, -119, null, 58);
                 int i_19_ = Math.min(class46.anInt709 / 2, class46.anInt789 / 2);
-                if (i_18_ > i_19_ * i_19_) {
+                // Distances are unscaled, so the minimap edge is further away when zoomed out
+                int reach = Class348_Sub40_Sub21.anInt9282 != 4 ? i_19_ * (256 + Class348_Sub49_Sub1.anInt9750) / 256 : i_19_;
+                if (i_18_ > reach * reach) {
                     i_19_ -= 10;
                     int i_20_;
                     if (Class348_Sub40_Sub21.anInt9282 == 4) i_20_ = (int) Class314.aFloat3938 & 0x3fff;

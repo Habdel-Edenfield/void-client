@@ -74,11 +74,15 @@ final class Class348_Sub14 extends Class348 {
     static final boolean method2808(int i, ha var_ha, boolean bool) {
         try {
             anInt6763++;
-            int i_5_ = (-104 + Class367_Sub4.anInt7319) / 2;
-            int i_6_ = (Class348_Sub40_Sub3.anInt9109 - 104) / 2;
+            // Draws the whole loaded map rather than the 104 tiles in its middle, so a zoomed out minimap has no black edges
+            int mapWidth = Class367_Sub4.anInt7319;
+            int mapHeight = Class348_Sub40_Sub3.anInt9109;
+            int i_5_ = 0;
+            int i_6_ = 0;
+            int size = 4 * Math.max(mapWidth, mapHeight) + 96 <= 512 ? 512 : 1024;
             boolean bool_7_ = bool;
-            for (int i_8_ = i_5_; i_8_ < 104 + i_5_; i_8_++) {
-                for (int i_9_ = i_6_; i_6_ + 104 > i_9_; i_9_++) {
+            for (int i_8_ = i_5_; i_8_ < mapWidth + i_5_; i_8_++) {
+                for (int i_9_ = i_6_; i_6_ + mapHeight > i_9_; i_9_++) {
                     for (int i_10_ = i; i_10_ <= 3; i_10_++) {
                         if (Class58.method536(i_9_, false, i_8_, i, i_10_)) {
                             int i_11_ = i_10_;
@@ -89,18 +93,19 @@ final class Class348_Sub14 extends Class348 {
                 }
             }
             if (!bool_7_) return false;
-            int[] is = new int[262144];
+            int[] is = new int[size * size];
             for (int i_12_ = 0; is.length > i_12_; i_12_++)
                 is[i_12_] = -16777216;
-            Class108.aClass105_1664 = var_ha.method3662(512, is, (byte) 94, 0, 512, 512);
+            Class108.aClass105_1664 = var_ha.method3662(size, is, (byte) 94, 0, size, size);
+            Class108.minimapSpriteSize = size;
             Class358.method3489(-3);
             int i_13_ = (((-10 + (238 + (int) (20.0 * Math.random())) << 8) + (-10 + (int) (Math.random() * 20.0) + 238 << 16) - (-(int) (Math.random() * 20.0) + -228)) | ~0xffffff);
             int i_14_ = (228 - -(int) (20.0 * Math.random()) << 16 | ~0xffffff);
             int i_15_ = ((int) (8.0 * Math.random()) | ((int) (8.0 * Math.random()) << 16 | (int) (8.0 * Math.random()) << 8));
             boolean[][] bools = (new boolean[3 + RuntimeException_Sub1.anInt4600]
                     [RuntimeException_Sub1.anInt4600 - -1 + 2]);
-            for (int i_16_ = i_5_; i_16_ < i_5_ - -104; i_16_ += RuntimeException_Sub1.anInt4600) {
-                for (int i_17_ = i_6_; i_17_ < i_6_ - -104; i_17_ += RuntimeException_Sub1.anInt4600) {
+            for (int i_16_ = i_5_; i_16_ < i_5_ + mapWidth; i_16_ += RuntimeException_Sub1.anInt4600) {
+                for (int i_17_ = i_6_; i_17_ < i_6_ + mapHeight; i_17_ += RuntimeException_Sub1.anInt4600) {
                     int i_18_ = 0;
                     int i_19_ = 0;
                     int i_20_ = i_16_;
@@ -111,9 +116,9 @@ final class Class348_Sub14 extends Class348 {
                     int i_21_ = i_17_;
                     if (i_21_ > 0) i_21_--;
                     int i_22_ = RuntimeException_Sub1.anInt4600 + i_16_;
-                    if (i_22_ < 104) i_22_++;
+                    if (i_22_ < mapWidth) i_22_++;
                     int i_23_ = i_17_ - -RuntimeException_Sub1.anInt4600;
-                    if (i_23_ < 104) {
+                    if (i_23_ < mapHeight) {
                         i_23_++;
                         i_19_ += 4;
                     }
@@ -156,7 +161,7 @@ final class Class348_Sub14 extends Class348 {
                         }
                     }
                     var_ha.aa(i_18_, i_19_, 4 * RuntimeException_Sub1.anInt4600, RuntimeException_Sub1.anInt4600 * 4, i_15_, 2);
-                    Class108.aClass105_1664.method979((-i_5_ + i_16_) * 4 + 48, (-(4 * (i_17_ - i_6_)) + 464 + -(RuntimeException_Sub1.anInt4600 * 4)), RuntimeException_Sub1.anInt4600 * 4, 4 * RuntimeException_Sub1.anInt4600, i_18_, i_19_);
+                    Class108.aClass105_1664.method979((-i_5_ + i_16_) * 4 + 48, (-(4 * (i_17_ - i_6_)) + (size - 48) + -(RuntimeException_Sub1.anInt4600 * 4)), RuntimeException_Sub1.anInt4600 * 4, 4 * RuntimeException_Sub1.anInt4600, i_18_, i_19_);
                 }
             }
             var_ha.la();
@@ -165,8 +170,8 @@ final class Class348_Sub14 extends Class348 {
             Class348_Sub40_Sub38.anInt9479 = 0;
             Class318_Sub1_Sub5_Sub1.aClass262_10125.method1996(116);
             if (!Class375.aBoolean4542) {
-                for (int i_37_ = i_5_; 104 + i_5_ > i_37_; i_37_++) {
-                    for (int i_38_ = i_6_; 104 + i_6_ > i_38_; i_38_++) {
+                for (int i_37_ = i_5_; mapWidth + i_5_ > i_37_; i_37_++) {
+                    for (int i_38_ = i_6_; mapHeight + i_6_ > i_38_; i_38_++) {
                         for (int i_39_ = i; i_39_ <= 1 + i && i_39_ <= 3; i_39_++) {
                             if (Class58.method536(i_38_, !bool, i_37_, i, i_39_)) {
                                 Interface10 interface10 = ((Interface10) Class348_Sub16_Sub3.method2878(i_39_, i_37_, i_38_));
@@ -200,9 +205,9 @@ final class Class348_Sub14 extends Class348 {
                                                 for (int i_49_ = 0; i_49_ < 10; i_49_++) {
                                                     int i_50_ = (int) (Math.random() * 4.0);
                                                     if ((i_50_ == 0) && (i_44_ > i_5_) && i_37_ + -3 < i_44_ && ((0x2c0108 & (is_46_[(-i_47_ + (i_44_ - 1))][(-i_48_ + i_45_)])) == 0)) i_44_--;
-                                                    if (i_50_ == 1 && (i_44_ < 104 + (i_5_ - 1)) && 3 + i_37_ > i_44_ && ((is_46_[(-i_47_ + 1 + i_44_)][i_45_ + -i_48_]) & 0x2c0180) == 0) i_44_++;
+                                                    if (i_50_ == 1 && (i_44_ < mapWidth + (i_5_ - 1)) && 3 + i_37_ > i_44_ && ((is_46_[(-i_47_ + 1 + i_44_)][i_45_ + -i_48_]) & 0x2c0180) == 0) i_44_++;
                                                     if ((i_50_ == 2) && (i_6_ < i_45_) && i_45_ > -3 + i_38_ && ((0x2c0102 & (is_46_[(-i_47_ + i_44_)][(i_45_ - 1 - i_48_)])) == 0)) i_45_--;
-                                                    if (i_50_ == 3 && (104 + i_6_ - 1 > i_45_) && 3 + i_38_ > i_45_ && ((0x2c0120 & (is_46_[i_44_ - i_47_][(-i_48_ + 1 + i_45_)])) == 0)) i_45_++;
+                                                    if (i_50_ == 3 && (mapHeight + i_6_ - 1 > i_45_) && 3 + i_38_ > i_45_ && ((0x2c0120 & (is_46_[i_44_ - i_47_][(-i_48_ + 1 + i_45_)])) == 0)) i_45_++;
                                                 }
                                             }
                                             Class263.anIntArray3347[(Class348_Sub40_Sub38.anInt9479)] = class51.anInt941;

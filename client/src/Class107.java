@@ -95,13 +95,14 @@ final class Class107 {
                         i_5_ = 4096;
                         i_6_ = 0x3fff & (int) -Class314.aFloat3938;
                     } else {
-                        i_5_ = 4096 - 16 * Class348_Sub49_Sub1.anInt9750;
+                        i_5_ = 4096 * 256 / (256 + Class348_Sub49_Sub1.anInt9750);
                         i_3_ = (Class132.aPlayer_1907.y);
                         i_6_ = ((int) -Class314.aFloat3938 - -r_Sub2.anInt10483 & 0x3fff);
                         i_4_ = (Class132.aPlayer_1907.x);
                     }
-                    int i_7_ = 48 - (-(i_4_ / 128) - -(Class367_Sub4.anInt7319 * 2)) - -208;
-                    int i_8_ = (208 - (Class348_Sub40_Sub3.anInt9109 * 2 - 48) + 4 * Class348_Sub40_Sub3.anInt9109 - i_3_ / 128);
+                    // The sprite holds the whole loaded map, 4 pixels a tile from a 48 pixel margin (Class348_Sub14.method2808)
+                    int i_7_ = 48 + i_4_ / 128;
+                    int i_8_ = Class108.minimapSpriteSize - 48 - i_3_ / 128;
                     Class108.aClass105_1664.method967(((float) class46.anInt709 / 2.0F + (float) i), ((float) class46.anInt789 / 2.0F + (float) i_1_), (float) i_7_, (float) i_8_, i_5_, i_6_ << 2, var_aa, i, i_1_);
                     for (Class348_Sub35 class348_sub35 = (Class348_Sub35) Class318_Sub1_Sub5_Sub1.aClass262_10125.method1995(i_2_ ^ 0x59b4); class348_sub35 != null; class348_sub35 = (Class348_Sub35) Class318_Sub1_Sub5_Sub1.aClass262_10125.method1990((byte) 92)) {
                         int i_9_ = class348_sub35.anInt6976;

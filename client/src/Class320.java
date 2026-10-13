@@ -8,6 +8,12 @@ final class Class320 {
     static int zoomStep = Loader.ZOOM_OFFSET_DEFAULT;
     static boolean overGameScreen = false;
     static int scrollWheelDiff = 0;
+    // Mouse over the minimap this cycle: the wheel zooms the minimap instead of the camera
+    static boolean overMinimap = false;
+    // Minimap zoom (Class348_Sub49_Sub1.anInt9750) per wheel notch and its limits: scale is 256 / (256 + zoom)
+    static final int MINIMAP_ZOOM_STEP = 16;
+    static final int MINIMAP_ZOOM_MIN = -64;
+    static final int MINIMAP_ZOOM_MAX = 256;
     static float aFloat3994;
 
     static final boolean method2547(int i, byte i_0_) {

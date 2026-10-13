@@ -4105,7 +4105,6 @@ final class Class130_Sub1 extends Class130 {
         r_Sub2.anInt10483 = -60 + (int) (Math.random() * 120D);
         Class260.anInt3310 = -55 + (int) (Math.random() * 110D);
         Class314.aFloat3938 = 0x3fff & -80 + (int) (160D * Math.random());
-        Class348_Sub49_Sub1.anInt9750 = (int) (30D * Math.random()) + -20;
         Class195.anInt5016 = (int) (80D * Math.random()) - 40;
         Class20.anInt319 = (int) (Math.random() * 100D) - 50;
         Class348_Sub40_Sub16.method3089(-126);

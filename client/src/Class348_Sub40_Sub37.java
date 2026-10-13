@@ -180,6 +180,6 @@ final class Class348_Sub40_Sub37 extends Class348_Sub40 {
     }
 
     static {
-        anIntArray9458 = new int[1000];
+        anIntArray9458 = new int[4000];
     }
 }

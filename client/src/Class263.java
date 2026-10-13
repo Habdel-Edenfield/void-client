@@ -7,7 +7,7 @@ final class Class263 {
     static int anInt3344;
     Class45 aClass45_3345;
     static int anInt3346;
-    static int[] anIntArray3347 = new int[1000];
+    static int[] anIntArray3347 = new int[4000]; // Minimap icons: 4000 for the whole loaded map (Class348_Sub14.method2808)
     static int anInt3348;
     static int anInt3349;
     private Class60 aClass60_3350;

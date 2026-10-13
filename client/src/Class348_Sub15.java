@@ -5,7 +5,7 @@
 final class Class348_Sub15 extends Class348 {
     Class55_Sub1 aClass55_Sub1_6768;
     static int anInt6769;
-    static int[] anIntArray6770 = new int[1000];
+    static int[] anIntArray6770 = new int[4000];
     static int anInt6771;
     boolean aBoolean6772;
     int anInt6773;

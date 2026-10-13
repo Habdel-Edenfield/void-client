@@ -37,6 +37,7 @@ final class Class151 {
                     i_6_ = (0x3fff & (int) Class314.aFloat3938 - -r_Sub2.anInt10483);
                 else i_6_ = 0x3fff & (int) Class314.aFloat3938;
                 int i_7_ = 10 + Math.max(class46.anInt709 / 2, class46.anInt789 / i_4_);
+                if (Class348_Sub40_Sub21.anInt9282 != 4) i_7_ = i_7_ * (256 + Class348_Sub49_Sub1.anInt9750) / 256;
                 int i_8_ = i_5_ * i_5_ - -(i_3_ * i_3_);
                 if (i_7_ * i_7_ >= i_8_) {
                     int i_9_ = Class70.anIntArray1207[i_6_];

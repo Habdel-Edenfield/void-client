@@ -1176,6 +1176,7 @@ public final class client extends Applet_Sub1 {
                                         int i_59_ = i_41_ - i_44_;
                                         int i_60_ = (class46.anIntArray677[i_59_]);
                                         if (i_58_ >= i_60_ && (i_58_ <= i_60_ + (class46.anIntArray772[i_59_]))) {
+                                            if (Class348_Sub40_Sub21.anInt9282 != 4) Class320.overMinimap = true;
                                             i_58_ -= (class46.anInt709) / 2;
                                             i_59_ -= (class46.anInt789) / 2;
                                             int i_61_;

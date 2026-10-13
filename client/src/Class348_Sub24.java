@@ -323,9 +323,13 @@ final class Class348_Sub24 extends Class348 {
                         Class175.method1343(-1, null, 1, -1);
                         if (!r.aBoolean9722) Class362.anInt4458 = -1;
                         Class320.overGameScreen = false;
+                        Class320.overMinimap = false;
                         Class216.method1583((byte) -73);
                         Class311.anInt3918++;
-                        if (Class320.overGameScreen && Class320.scrollWheelDiff != 0 && !Class351.aBoolean4328) {
+                        if (Class320.overMinimap && Class320.scrollWheelDiff != 0 && !Class351.aBoolean4328) {
+                            int zoom = Class348_Sub49_Sub1.anInt9750 + Class320.scrollWheelDiff * Class320.MINIMAP_ZOOM_STEP;
+                            Class348_Sub49_Sub1.anInt9750 = Math.max(Class320.MINIMAP_ZOOM_MIN, Math.min(Class320.MINIMAP_ZOOM_MAX, zoom));
+                        } else if (Class320.overGameScreen && Class320.scrollWheelDiff != 0 && !Class351.aBoolean4328) {
                             if (Class192.anInt2581 <= 0 || !Class182.aClass346_2449.method2696(82, -125) || !Class182.aClass346_2449.method2696(81, -126)) {
                                 Class320.zoomStep += -Class320.scrollWheelDiff * Loader.ZOOM_OFFSET_STEP;
                             }
@@ -407,13 +411,10 @@ final class Class348_Sub24 extends Class348 {
                             if (Class285.anInt4753 > 500) {
                                 Class285.anInt4753 = 0;
                                 int i_33_ = (int) (Math.random() * 8.0);
-                                if ((i_33_ & 0x2) == 2) Class348_Sub49_Sub1.anInt9750 += Class348_Sub42_Sub14.anInt9645;
                                 if ((i_33_ & 0x1) == 1) r_Sub2.anInt10483 += Class348_Sub42_Sub9_Sub1.anInt10443;
                             }
                             if (r_Sub2.anInt10483 < -60) Class348_Sub42_Sub9_Sub1.anInt10443 = 2;
-                            if (Class348_Sub49_Sub1.anInt9750 < -20) Class348_Sub42_Sub14.anInt9645 = 1;
                             if (r_Sub2.anInt10483 > 60) Class348_Sub42_Sub9_Sub1.anInt10443 = -2;
-                            if (Class348_Sub49_Sub1.anInt9750 > 10) Class348_Sub42_Sub14.anInt9645 = -1;
                             Class11.anInt193++;
                             if (Class11.anInt193 > 50) {
                                 IOException_Sub1.anInt88++;
