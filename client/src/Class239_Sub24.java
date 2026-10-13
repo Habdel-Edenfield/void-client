@@ -258,6 +258,19 @@ final class Class239_Sub24 extends Class239 {
                             int i_56_ = i_32_ - -Class90.regionTileY;
                             Class348_Sub37 class348_sub37 = ((Class348_Sub37) (Class130.aClass356_1895.method3480((class318_sub4.aClass318_Sub1_6410.plane) << 28 | i_56_ << 14 | i_55_, -6008)));
                             if (class348_sub37 != null) {
+                                if (class318_sub4.aClass318_Sub1_6410.plane == (Class132.aPlayer_1907.plane)) {
+                                    // "Take all" for a pile: no item uses floor option 2, so the server reads it as take everything on the tile.
+                                    int count = 0;
+                                    int takeId = -1;
+                                    for (Class348_Sub34 node = ((Class348_Sub34) class348_sub37.aClass262_6998.method1993(-92)); node != null; node = ((Class348_Sub34) class348_sub37.aClass262_6998.method2003(-127))) {
+                                        count++;
+                                        if (takeId == -1) {
+                                            String[] options = Exception_Sub1.aClass255_112.method1940(79, node.anInt6973).aStringArray2811;
+                                            if (options != null && options[1] == null && options[2] != null) takeId = node.anInt6973;
+                                        }
+                                    }
+                                    if (count > 1 && takeId != -1) Class50_Sub3.method466(false, "", i_32_, (byte) -119, false, i_33_, -1, true, 10, 0, "Take all", takeId, Class38.anInt506);
+                                }
                                 int i_57_ = 0;
                                 Class348_Sub34 class348_sub34 = ((Class348_Sub34) class348_sub37.aClass262_6998.method1993(-92));
                                 while (class348_sub34 != null) {
